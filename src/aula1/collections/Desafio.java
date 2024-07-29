@@ -37,22 +37,26 @@ public class Desafio {
 		mapa.put("o", null);
 		mapa.put("u", null);
 
-		
 		// Assim não funciona. Aparentemente é um ponteiro,
 		// procurar outro jeito
-		ArrayList<String> listaPut = new ArrayList<>();
+
+		String msg = "";
 
 		for (String c : mapa.keySet()) {
+			msg += "Chave: " + c + "\nPalavras que contêm " + c + ": \n";
+
+			ArrayList<String> listaPut = new ArrayList<>();
+			listaPut.clear();
 			for (String p : listaPalavras) {
 				if (p.contains(c)) {
 					listaPut.add(p);
+					msg += "-> " + p + "\n";
 				}
 			}
 			mapa.put(c, listaPut);
-			listaPut.clear();
+			msg += "\n\n";
 		}
-		System.out.println(mapa);
-
+		JOptionPane.showMessageDialog(null, msg);
 	}
 
 }
