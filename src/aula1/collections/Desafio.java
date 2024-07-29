@@ -37,16 +37,14 @@ public class Desafio {
 		mapa.put("o", null);
 		mapa.put("u", null);
 
-		// Assim não funciona. Aparentemente é um ponteiro,
-		// procurar outro jeito
-
+		
 		String msg = "";
 
 		for (String c : mapa.keySet()) {
 			msg += "Chave: " + c + "\nPalavras que contêm " + c + ": \n";
-
 			ArrayList<String> listaPut = new ArrayList<>();
 			listaPut.clear();
+			
 			for (String p : listaPalavras) {
 				if (p.contains(c)) {
 					listaPut.add(p);
