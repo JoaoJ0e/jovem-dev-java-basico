@@ -35,8 +35,20 @@ public class Exercicio4 {
 			}
 		}
 
+		
 		System.out.println(mapa);
-
+		
+		// Método melhorado, estudar mais	
+//		String frase = JOptionPane.showInputDialog("Insira uma frase");
+//		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+//		for (int i = 0; i < frase.length(); i++) {
+//			map.putIfAbsent(frase.charAt(i), 0);
+//			map.computeIfPresent(frase.charAt(i), (key, val) -> val + 1);
+//		}
+//		JOptionPane.showMessageDialog(null, map);
+		
+		
+		
 	}
 
 }
