@@ -55,6 +55,10 @@ public class Desafio {
 			mapa.put(c, listaPut);
 			msg += "\n\n";
 		}
+		
+		for (Map.Entry<String, ArrayList<String>> elemento : mapa.entrySet() ) {
+			System.out.println(elemento.getKey() + " - " + elemento.getValue());
+		}
 		JOptionPane.showMessageDialog(null, msg);
 	}
 
