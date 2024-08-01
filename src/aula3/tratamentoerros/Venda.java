@@ -31,56 +31,29 @@ public class Venda {
 	}
 
 	public void setItens() throws VendaException {
-		int qtdItens = validaQtdItens();
-		String nome = "";
-		double preco = 0;
+		int qtdItens = Integer.parseInt(JOptionPane.showInputDialog("Insira a quantidade de itens:"));
+		if (qtdItens < 1 || qtdItens > 10) {
+			throw new VendaException("Quantidade inválida: Insira uma quantidade de 1 à 10.");
+		}
 
 		ArrayList<Item> listaItens = new ArrayList<>();
 
 		for (int i = 0; i < qtdItens; i++) {
-			nome = JOptionPane.showInputDialog("Insira o nome do " + (i + 1) + "º item: ");
-			preco = validaPreco();
-			Item item = new Item(nome, preco);
+			Item item = new Item();
+			item.nome = JOptionPane.showInputDialog("Insira o nome do " + (i + 1) + "º item: ");
+			do {
+				item.preco = Double.parseDouble(JOptionPane.showInputDialog("Insira o preço do  item: "));
+				try {
+					if (item.preco <= 0) {
+						throw new PrecoIncorretoException("Valor não pode ser menor ou igual a zero.");
+					}
+				} catch (PrecoIncorretoException e) {
+					JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
+				}
+			} while (item.preco <= 0);
 			listaItens.add(item);
 		}
-
 		this.itens = listaItens;
-
-	}
-
-	public static int validaQtdItens() throws VendaException {
-		boolean continua = true;
-		do {
-			try {
-				int qtdItens = Integer.parseInt(JOptionPane.showInputDialog("Insira a quantidade de itens:"));
-				if (qtdItens <= 0 || qtdItens > 10) {
-					throw new VendaException("Quantidade inválida: Insira uma quantidade de 1 à 10.");
-				}
-				continua = false;
-				return qtdItens;
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Erro: Valor inválido!");
-			}
-		} while (continua);
-		return 0;
-	}
-
-	public static double validaPreco() {
-		boolean continua = true;
-		double preco = 0;
-		do {
-			try {
-				preco = Double.parseDouble(JOptionPane.showInputDialog("Insira o preço do  item: "));
-				if (preco <= 0) {
-					throw new PrecoIncorretoException("Valor não pode ser menor ou igual a zero.");
-				}
-				continua = false;
-				return preco;
-			} catch (PrecoIncorretoException | NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-			}
-		} while (continua);
-		return preco;
 	}
 
 	public String getNomeCliente() {
