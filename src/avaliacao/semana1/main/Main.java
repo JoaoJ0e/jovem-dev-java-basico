@@ -34,7 +34,7 @@ public class Main {
 		} else {
 			cliente = new Cliente();
 		}
-		System.out.println(cliente.getClass());
+
 		cliente.setNome(nomeCliente);
 		cliente.pedeDataNascimento();
 		
