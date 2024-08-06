@@ -15,7 +15,6 @@ public class Exercicio5 {
 						BigDecimal.valueOf(2.0)
 						.multiply((BigDecimal.valueOf(Math.PI)))
 						, 4, RoundingMode.HALF_EVEN);
-
 		
 		System.out.println(raio);
 		

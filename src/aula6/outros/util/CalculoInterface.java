@@ -1,7 +1,8 @@
 package aula6.outros.util;
 
+@FunctionalInterface
 public interface CalculoInterface {
 
-	public Integer calcula(Integer i1, Integer i2);
+	public int calcula(int i1, int i2);
 
 }
