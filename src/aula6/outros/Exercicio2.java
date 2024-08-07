@@ -8,10 +8,11 @@ public class Exercicio2 {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("VALORES: 10 E 5\n\n");
-
 		int n1 = 10;
 		int n2 = 5;
+		
+		sb.append("VALORES: ").append(n1).append(", ").append(n2);
+
 
 		for (Calculadora1Enum op : Calculadora1Enum.values()) {
 			sb.append(op).append(": ").append(op.calcula(n1, n2));

@@ -49,7 +49,7 @@ public enum DiaSemanaEnum {
 	private DiaSemanaEnum(String nome) {
 		this.nome = nome;
 	}
-
+	// "Quem for herdar de mim precisa implementar este método!"
 	public abstract boolean isFimDeSemana();
 
 	public String getNome() {
@@ -58,7 +58,8 @@ public enum DiaSemanaEnum {
 	
 	@Override
 	public String toString() {
-		return nome;
+		String fimDeSemana = isFimDeSemana() ? "Sim" : "Não";
+		return String.format("%s - Fim de semana? %s", nome, fimDeSemana);
 	}
 
 }

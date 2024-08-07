@@ -14,7 +14,15 @@ public class Desafio {
 	public static void main(String[] args) {
 
 		List<Evento> lista = new ArrayList<>();
-
+		lista.add(new Evento("Nome", LocalDateTime.of(2024, 8, 9, 12, 0), TipoEventoEnum.LAZER));
+		lista.add(new Evento("Nome", LocalDateTime.of(2024, 8, 9, 12, 0), TipoEventoEnum.LAZER));
+		lista.add(new Evento("Nome", LocalDateTime.of(2024, 8, 9, 12, 0), TipoEventoEnum.LAZER));
+		lista.add(new Evento("Nome", LocalDateTime.of(2024, 8, 9, 12, 0), TipoEventoEnum.LAZER));
+		lista.add(new Evento("Nome", LocalDateTime.of(2024, 8, 9, 12, 0), TipoEventoEnum.LAZER));
+		lista.add(new Evento("Nome", LocalDateTime.of(2024, 8, 9, 12, 0), TipoEventoEnum.LAZER));
+		
+		/*
+		
 		Evento evento;
 
 		do {
@@ -32,8 +40,11 @@ public class Desafio {
 			
 
 		} while (true);
+		
+		*/
 		int op = 0;
 		do {
+			
 			try {
 				op = Integer.parseInt(JOptionPane.showInputDialog(
 						"Agora, escolha um tipo de evento para filtragem:\n1 - SOCIAL\n2 - LAZER\n3 - PROFISSIONAL\n4 - OUTROS"));
@@ -47,31 +58,37 @@ public class Desafio {
 			}
 		} while (true);
 		
-		int test = op;
+		int categoria = op;
 		
-		StringBuilder sb = new StringBuilder();
+		StringBuilder passados = new StringBuilder();
+		StringBuilder pendentes = new StringBuilder();
 
 		
 		
 		try { // Eventos que ja passaram
-			sb.append("Eventos desta categoria que já passaram:");
-			lista.stream().filter(e -> e.getTipoEvento().equals(TipoEventoEnum.getPorId(test))).filter(e -> e.getDataHora().isBefore(LocalDateTime.now())).forEach(sb::append);
+			passados.append("Eventos desta categoria que já passaram:");
+			lista.stream().filter(e -> e.getTipoEvento().equals(TipoEventoEnum.getPorId(categoria))).filter(e -> e.getDataHora().isBefore(LocalDateTime.now())).forEach(passados::append);
 			
 			// Eventos que estao por vir
-			sb.append("\nEventos desta categoria que estão por vir:");
-			lista.stream().filter(e -> e.getTipoEvento().equals(TipoEventoEnum.getPorId(test))).filter(e -> e.getDataHora().isAfter(LocalDateTime.now())).forEach(sb::append);
+			pendentes.append("\nEventos desta categoria que estão por vir:");
+			lista.stream().filter(e -> e.getTipoEvento().equals(TipoEventoEnum.getPorId(categoria))).filter(e -> e.getDataHora().isAfter(LocalDateTime.now())).forEach(pendentes::append);
 			
 		} catch (NullPointerException e) {
-			sb.append("Erro: Nenhum evento cadastrado");
+			passados.append("Erro: Nenhum evento cadastrado");
+			pendentes.delete(op, pendentes.length());
 		}
 		
-		if (sb.length() == 83) {
-			sb.delete(0, sb.length());
-			sb.append("Nenhum evento existe nessa categoria");
+		if (passados.toString().equals("Eventos desta categoria que já passaram:")) {
+			passados.delete(0, passados.length());
+			passados.append("Nenhum evento passado nessa categoria");
+		}
+
+		if (pendentes.toString().equals("\nEventos desta categoria que estão por vir:")) {
+			pendentes.delete(0, pendentes.length());
+			pendentes.append("Nenhum evento pendente nessa categoria");
 		}
 		
-		System.out.println(sb.length());
-		JOptionPane.showMessageDialog(null, sb);
+		JOptionPane.showMessageDialog(null, passados + "\n" + pendentes);
 
 	}
 }

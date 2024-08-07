@@ -53,7 +53,9 @@ public class Pessoa {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Nome: ").append(nome).append("\nData de Nascimento: ").append(dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		sb.append("Nome: ").append(nome)
+			.append("\nData de Nascimento: ")
+			.append(dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		return sb.toString();
 	}
 	

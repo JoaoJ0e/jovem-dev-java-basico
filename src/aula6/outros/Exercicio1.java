@@ -9,7 +9,7 @@ public class Exercicio1 {
 		StringBuilder sb = new StringBuilder();
 		
 		for (DiaSemanaEnum d : DiaSemanaEnum.values()) {
-			sb.append(d).append(" - É fim de semana? -> ").append(d.isFimDeSemana());
+			sb.append(d.toString());
 			sb.append("\n");
 		}
 		System.out.println(sb.toString());
