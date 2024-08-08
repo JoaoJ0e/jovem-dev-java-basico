@@ -1,4 +1,4 @@
-package aula6.outros.util;
+package aula7.testes.desafio;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -40,16 +40,40 @@ public class Evento {
 		
 		do {
 			try {
-				String op = JOptionPane
-						.showInputDialog("Escolha o tipo de evento:\nSOCIAL\nLAZER\nPROFISSIONAL\nOUTROS")
-						.toUpperCase();
-
-				this.tipoEvento = TipoEventoEnum.valueOf(op);
-
+				String op = JOptionPane.showInputDialog(
+						"Escolha o tipo de evento:\n1SOCIAL\n2LAZER\nPROFISSIONAL\nOUTROS").toUpperCase();
+				
+				switch (op) {
+				
+				case "SOCIAL":
+					this.tipoEvento = TipoEventoEnum.SOCIAL;
+					break;
+				
+				
+				case "LAZER":
+					this.tipoEvento = TipoEventoEnum.LAZER;
+					break;
+				
+				
+				case "PROFISSIONAL":
+					this.tipoEvento = TipoEventoEnum.PROFISSIONAL;
+					break;
+				
+				
+				case "OUTROS":
+					this.tipoEvento = TipoEventoEnum.OUTROS;
+					break;
+				
+				
+				default:
+					throw new IllegalArgumentException("Opcao Invalida");
+				}
+	
+				break;
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
 			}
-		} while (true);
+		} while (this.tipoEvento.equals(null));
 	}
 	
 	@Override
